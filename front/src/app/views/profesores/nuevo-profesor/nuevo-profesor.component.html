@@ -1,0 +1,72 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">{{ title }}</h6>
+    </div>
+    <!--form-->
+    <div class="card-body">
+      <form [formGroup]="escuela" (ngSubmit)="grabar()">
+        <div class="mb-2">
+          <label for="ID_escuela">escuela</label>
+          <select class="form-control" formControlName="ID_escuela">
+            <option value="0">Seleccione una opción</option>
+            @for (escuela of ListaEscuelas; track escuela.ID_escuela) {
+            <option [value]="escuela.ID_escuela">{{ escuela.Nombre_escuela }}</option>
+            }
+          </select>
+  
+          @if (escuela.invalid && (escuela.dirty || escuela.touched)) {
+          <div class="alert alert-danger">
+            @if (escuela.errors?.["required"]) {
+            <div class="bg-primary">Id escuela es requerido</div>
+            }
+          </div>
+          }
+        </div>
+        
+        <div class="mb-2">
+          <label for="nombre_profesor"> nombre_profesor </label>
+          <input type="text" class="form-control" formControlName="nombre_profesor" />
+          @if (escuela.invalid && (escuela.dirty || escuela.touched)) {
+          <div class="alert">
+            @if (escuela.errors?.["required"]) {
+            <div class="ng-invalid">nombre_profesor es requerido</div>
+            }
+          </div>
+          }
+        </div>
+       
+        <div class="mb-2">
+            <label for="materia"> materia </label>
+            <input type="text" class="form-control" formControlName="materia" />
+            @if (escuela.invalid && (escuela.dirty || escuela.touched)) {
+            <div class="alert">
+              @if (escuela.errors?.["required"]) {
+              <div class="ng-invalid">materia es requerido</div>
+              }
+            </div>
+            }
+          </div>
+          <div class="mb-2">
+            <label for="salario"> 	salario</label>
+            <input type="text" class="form-control" formControlName="salario" />
+            @if (escuela.invalid && (escuela.dirty || escuela.touched)) {
+            <div class="alert">
+              @if (escuela.errors?.["required"]) {
+              <div class="ng-invalid">	salario es requerido</div>
+              }
+            </div>
+            }
+          </div>
+
+
+        <div class="mb-2">
+          <button type="submit" class="btn btn-primary" [disabled]="!escuela.valid">
+            Grabar
+          </button>
+          <button class="btn btn-secondary" routerLink="/profesores">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>

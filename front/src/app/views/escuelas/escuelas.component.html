@@ -1,0 +1,64 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">{{ title }}</h6>
+      <hr />
+      <button class="btn btn-primary" routerLink="/nueva-escuela">Nuevo</button>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-bordered"
+          id="dataTable"
+          width="100%"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre Escuela</th>
+              <th>Ciudad</th>
+              <th>Nivel Educativo</th>
+              
+              
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (escuela of escuelas; track escuela.ID_escuela; let i =
+            $index) {
+            <tr>
+              <td>{{ i + 1 }}</td>
+              <td>{{ escuela.Nombre_escuela }}</td>
+              <td>{{ escuela.Ciudad }}</td>
+              <td>{{ escuela.Nivel_educativo }}</td>
+              
+              <td>
+                <button
+                type="button"
+                class="btn btn-outline-warning"
+                routerLink="/editar-escuela/{{ escuela.ID_escuela }}"
+              >
+                Editar
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-danger"
+                (click)="eliminar(escuela.ID_escuela)"
+              >
+                Eliminar
+              </button>
+               
+               
+              </td>
+            </tr>
+            }@empty {
+            <tr>
+              <td colspan="5">No existen registros</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+ 

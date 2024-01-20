@@ -1,0 +1,66 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">{{ title }}</h6>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="escuela" (ngSubmit)="grabar()">
+        <div class="mb-2">
+          <label for="Nombre_escuela">Nombre de la escuela</label>
+          <input type="text" class="form-control" formControlName="Nombre_escuela" />
+          @if (escuela.invalid && (escuela.dirty || escuela.touched)) {
+          <div class="alert">
+            @if (escuela.errors?.["required"]) {
+            <div class="ng-invalid">Nombre de la escuela es requerido</div>
+            }
+          </div>
+          }
+        </div>
+        <div class="mb-2">
+          <label for="Ciudad">Ciudad</label>
+          <input type="text" class="form-control" formControlName="Ciudad" />
+          @if (escuela.invalid && (escuela.dirty || escuela.touched)) {
+          <div class="alert">
+            @if (escuela.errors?.["required"]) {
+            <div class="ng-invalid">La Ciudad es requerido</div>
+            }@else if (escuela.errors?.["minlength"]) {
+            <div>Debe tener minimo 3 caracteres.</div>
+            }@else if (escuela.errors?.["maxlength"]) {
+            <div>Debe tener maximo 10 caracteres.</div>
+            }
+          </div>
+          }
+        </div>
+        <div class="mb-2">
+            <label for="Nivel_educativo">Nivel educativo</label>
+            <input type="text" class="form-control" formControlName="Nivel_educativo" />
+            @if (escuela.invalid && (escuela.dirty || escuela.touched)) {
+            <div class="alert">
+              @if (escuela.errors?.["required"]) {
+              <div class="ng-invalid">La Nivel_educativo es requerida</div>
+              }@else if (escuela.errors?.["minlength"]) {
+              <div>Debe tener minimo 1 caracteres.</div>
+              }@else if (escuela.errors?.["maxlength"]) {
+              <div>Debe tener maximo 10 caracteres.</div>
+              }
+            </div>
+            }
+          </div>
+         
+        
+  
+        <div class="mb-2">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!escuela.valid"
+          >
+            Grabar
+          </button>
+          <button class="btn btn-secondary" routerLink="/escuelas">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
